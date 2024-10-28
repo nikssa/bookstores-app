@@ -2,7 +2,7 @@ import StoreBooks from '../store-books/StoreBooks';
 import Rating from '../rating/Rating';
 import CountryFlag from '../common/CountryFlag';
 import DateLink from '../common/DateLink';
-import { IncludedProps, NormalizeStoresProps } from '../../types';
+import { NormalizeStoresProps } from '../../types';
 import './StoreCard.scss';
 
 type StoreCardProps = NormalizeStoresProps;
@@ -19,9 +19,11 @@ function StoreCard({
   authors,
   countries
 }: StoreCardProps) {
-  const countryCode = countries?.find((country: IncludedProps) => {
-    return country.id === countryId;
-  })?.attributes.code;
+  const country = countries?.find((country) => country.id === countryId);
+  const countryCode = country?.attributes.code;
+  const formattedDate = `${new Date(date).getDate()}.${
+    new Date(date).getMonth() + 1
+  }.${new Date(date).getFullYear()}`;
 
   return (
     <section className='store-card'>
@@ -40,7 +42,7 @@ function StoreCard({
       </div>
 
       <div className='store-card__footer'>
-        <DateLink date={date} url={link} />
+        <DateLink date={formattedDate} url={link} />
         <CountryFlag code={countryCode} />
       </div>
     </section>

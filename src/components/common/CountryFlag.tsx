@@ -3,9 +3,8 @@ import { useCountry } from '../../hooks/useCountry';
 type CountryFlagProps = { code: string };
 
 const CountryFlag = ({ code }: CountryFlagProps) => {
-  const flagUrl = `https://flagsapi.com/${code}/flat/48.png`;
-
-  const { data: country, isLoading, isError } = useCountry(code);
+  const { data: countryData, isLoading, isError } = useCountry(code);
+  const fallbackFlagUrl = `https://flagsapi.com/${code}/flat/48.png`;
 
   if (isLoading) {
     return <div className='country'>Loading...</div>;
@@ -16,17 +15,17 @@ const CountryFlag = ({ code }: CountryFlagProps) => {
     // Providing a fallback image in case the API fails
     return (
       <div className='country'>
-        <img src={flagUrl} alt='Country Flag' />
+        <img src={fallbackFlagUrl} alt='Fallback Country Flag' />
       </div>
     );
   }
 
-  const countrySvgUrl = country[0]?.flags.svg;
-  const countryName = country[0]?.name?.official;
+  const flagUrl = countryData[0]?.flags.svg;
+  const countryName = countryData[0]?.name?.official;
 
   return (
     <div className='country'>
-      <img src={countrySvgUrl} alt={`Flag of ${countryName}`} />
+      <img src={flagUrl} alt={`Flag of ${countryName}`} />
     </div>
   );
 };

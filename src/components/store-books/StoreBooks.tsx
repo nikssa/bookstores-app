@@ -8,17 +8,13 @@ type StoreBookProps = {
 };
 
 function StoreBooks({ storeBooks, books, authors }: StoreBookProps) {
-  const selectedBooks = books?.filter((book: IncludedProps) => {
-    const foundBook = storeBooks?.find(
-      (storeBook: IncludedProps) => storeBook.id === book.id
-    );
-    return !!foundBook;
-  });
+  const filteredBooks = books?.filter((book: IncludedProps) =>
+    storeBooks?.some((storeBook: IncludedProps) => storeBook.id === book.id)
+  );
 
-  const normalizeStoreBooks = selectedBooks?.map((storeBook: IncludedProps) => {
+  const normalizedBooks = filteredBooks?.map((storeBook: IncludedProps) => {
     const author = authors?.find(
-      (author: IncludedProps) =>
-        author.id === storeBook?.relationships?.author.data.id
+      (author) => author.id === storeBook.relationships?.author.data.id
     );
     const authorName = author?.attributes.fullName || 'Unknown Author';
 
@@ -33,14 +29,14 @@ function StoreBooks({ storeBooks, books, authors }: StoreBookProps) {
   /**
    * Sorting store books by copiesSold in descending order
    */
-  const sortedStoreBooks = normalizeStoreBooks?.sort(
+  const sortedBooks = normalizedBooks?.sort(
     (a: NormalizeBookProps, b: NormalizeBookProps) =>
       b.copiesSold - a.copiesSold
   );
   /**
    * Getting top 2 store books to display
    */
-  const topTwoStoreBooks = sortedStoreBooks?.slice(0, 2);
+  const topTwoBooks = sortedBooks?.slice(0, 2);
 
   return (
     <>
@@ -53,9 +49,8 @@ function StoreBooks({ storeBooks, books, authors }: StoreBookProps) {
           </tr>
         </thead>
         <tbody>
-          {topTwoStoreBooks?.length > 0 ? (
-            topTwoStoreBooks.map((storeBook: NormalizeBookProps) => {
-              const { id, bookName, copiesSold, authorName } = storeBook;
+          {topTwoBooks?.length > 0 ? (
+            topTwoBooks.map(({ id, bookName, copiesSold, authorName }) => {
               return (
                 <tr key={id}>
                   <td>

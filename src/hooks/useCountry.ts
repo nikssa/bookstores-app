@@ -8,27 +8,39 @@ export const useCountry = (code: string) => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
+    let ignore = false;
+    const fetchData = async (): Promise<void> => {
       setIsError(false);
       setIsLoading(true);
       try {
-        const result = await fetch(url, {
+        const response = await fetch(url, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json'
           }
         });
-        const data = await result.json();
-        setData(data);
+        if (!response.ok) {
+          throw new Error(
+            `Failed to fetch country data. Status: ${response.status}`
+          );
+        }
+        const data: { [key: string]: any } = await response.json();
+        if (!ignore) {
+          setData(data);
+        }
       } catch (error) {
         setIsError(true);
-        console.error('Error fetching country data.');
+        console.error('Error fetching country data.', error);
       } finally {
         setIsLoading(false);
       }
     };
     fetchData();
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   return { data, isLoading, isError };

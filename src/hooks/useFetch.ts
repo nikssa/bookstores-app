@@ -7,6 +7,7 @@ export const useFetch = (url: string) => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
+    let ignore = false;
     const fetchData = async () => {
       setIsError(false);
       setIsLoading(true);
@@ -19,7 +20,9 @@ export const useFetch = (url: string) => {
           }
         });
         const data = await result.json();
-        setData(data);
+        if (!ignore) {
+          setData(data);
+        }
       } catch (error) {
         setIsError(true);
       } finally {
@@ -27,6 +30,10 @@ export const useFetch = (url: string) => {
       }
     };
     fetchData();
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   return { data, isLoading, isError };

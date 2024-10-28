@@ -9,7 +9,7 @@ function DateLink({ date, url }: DateLinkProps) {
   return (
     <div className='date-link'>
       <span>{date}</span> |{' '}
-      <a href={url} target='_blank'>
+      <a href={url} target='_blank' rel='noopener noreferrer'>
         {shortURL}
       </a>
     </div>

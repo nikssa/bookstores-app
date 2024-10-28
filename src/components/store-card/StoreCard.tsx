@@ -29,7 +29,9 @@ function StoreCard({
     <section className='store-card'>
       <div className='store-card__top'>
         <div className='image'>
-          <img src={image} alt={`${name} store`} />
+          <a href={link} target='_blank' rel='noopener noreferrer'>
+            <img src={image} alt={`${name} store`} />
+          </a>
         </div>
 
         <div className='data'>

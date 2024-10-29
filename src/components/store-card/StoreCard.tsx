@@ -1,8 +1,8 @@
-import StoreBooks from '../store-books/StoreBooks';
-import Rating from '../rating/Rating';
+import { NormalizeStoresProps } from '../../types';
 import CountryFlag from '../common/CountryFlag';
 import DateLink from '../common/DateLink';
-import { NormalizeStoresProps } from '../../types';
+import Rating from '../rating/Rating';
+import StoreBooks from '../store-books/StoreBooks';
 import './StoreCard.scss';
 
 type StoreCardProps = NormalizeStoresProps;

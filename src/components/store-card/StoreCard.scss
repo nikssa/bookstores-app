@@ -1,16 +1,16 @@
 .store-card {
-  background-color: #f3f3f3;
-  border-bottom: 1px solid #ddd;
+  background-color: var(--card-background-color);
+  border-bottom: 1px solid var(--card-border-color);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding: 2rem 2rem 1.5rem;
 
   @media screen and (min-width: 768px) {
-    border: 1px solid #f0f0f0;
+    border: 1px solid var(--card-border-color);
     border-radius: 5px;
     margin: 0 0 2rem;
-    padding: 2.5rem 3rem 1.5rem;
+    padding: 2.5rem 3rem 2rem;
     width: calc(100% - 4rem);
   }
 
@@ -54,7 +54,7 @@
         transition: all 0.5s ease;
 
         &:hover {
-          transform: scale(1.2);
+          transform: scale(1.1);
         }
       }
     }
@@ -89,6 +89,7 @@
   &__footer {
     display: flex;
     flex-wrap: nowrap;
+    align-items: center;
     width: 100%;
 
     .date-link {

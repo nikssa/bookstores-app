@@ -1,5 +1,7 @@
 import StoreCard from './components/store-card/StoreCard';
 import { useFetch } from './hooks/useFetch';
+import { useState } from 'react';
+import ThemeButton from './components/common/theme-button/ThemeButton';
 import './global.scss';
 
 function App() {
@@ -8,6 +10,9 @@ function App() {
     isError,
     isLoading
   } = useFetch('http://localhost:3000/stores');
+
+  // const [theme, setTheme] = useLocalStorage('theme', 'light');
+  const [theme, setTheme] = useState('dark');
 
   if (isError) {
     return (
@@ -45,11 +50,16 @@ function App() {
   );
 
   return (
-    <main>
-      {normalizedStores?.map((store) => (
-        <StoreCard {...store} key={store.id} />
-      ))}
-    </main>
+    <>
+      <ThemeButton theme={theme} setTheme={setTheme} />
+      <div className={`wrapper ${theme}`}>
+        <main>
+          {normalizedStores?.map((store) => (
+            <StoreCard {...store} key={store.id} />
+          ))}
+        </main>
+      </div>
+    </>
   );
 }
 

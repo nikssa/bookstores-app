@@ -1,0 +1,45 @@
+.theme-toggle-button {
+  background-color: var(--button-background-color);
+  border: 0;
+  border-radius: 5px 0 0 5px;
+  box-shadow: 0 0 10px 5px var(--button-shadow-color);
+  color: var(--button-text-color);
+  cursor: pointer;
+  padding: 1rem 2.5rem 1rem 2rem;
+  position: fixed;
+  right: 1.5rem;
+  top: 2rem;
+  transform: translateX(100%);
+  transition: all 0.2s linear;
+  z-index: 1;
+
+  &:hover {
+    background-color: var(--button-hover-background-color);
+  }
+
+  &.pulse {
+    animation-name: pulse;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+
+  &.on {
+    transform: translateX(15%) scale(1.1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-color: var(--button-background-color);
+    transform: translateX(100%) scale(1);
+  }
+  50% {
+    background-color: var(--button-hover-background-color);
+    transform: translateX(100%) scale(1.1);
+  }
+  100% {
+    background-color: var(--button-background-color);
+    transform: translateX(100%) scale(1);
+  }
+}

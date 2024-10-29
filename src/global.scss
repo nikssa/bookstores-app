@@ -1,4 +1,24 @@
 :root {
+  // color-scheme: light dark;
+  --app-background-color: light-dark(#fefefe, #1a1a1a);
+  --app-text-color: light-dark(#404040, #e0e0e0);
+  --card-background-color: light-dark(#f3f3f3, #1d1d1d);
+  --card-border-color: light-dark(#e3e3e3, #222);
+  --card-text-color: light-dark(#222, #ddd);
+  --star-on-color: light-dark(orange, orange);
+  --star-off-color: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.15));
+  --table-background-color: light-dark(#fefefe, #2a2a2a);
+  --table-border-color: light-dark(#f0f0f0, #1d1d1d);
+  --table-border-color-intense: light-dark(#eaeaea, #1a1a1a);
+  --copies-background-color: light-dark(#eaeaea, #1d1d1d);
+  --copies-text-color: light-dark(#909090, #606060);
+  --button-background-color: light-dark(#3e44ba, #4b52df);
+  --button-hover-background-color: light-dark(#2a2e7d, #5961ff);
+  --button-shadow-color: light-dark(rgba(0, 0, 0, 0.2), rgba(74, 81, 217, 0.2));
+  --button-text-color: light-dark(#e0e0e0, #fefefe);
+  --link-text-color: light-dark(#434ac9, #636afe);
+  --link-hover-text-color: light-dark(#2a2e7d, #797fff);
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -6,6 +26,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.light {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
 }
 
 html {
@@ -22,27 +50,33 @@ body {
 
 a {
   font-weight: 500;
-  color: #3e44ba;
+  color: var(--link-text-color);
   text-decoration: none;
   transition: color 0.3s ease-out;
 }
 
 a:hover {
-  color: #2a2e7d;
+  color: var(--link-hover-text-color);
   text-decoration: underline;
 }
 
-main {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100dvh;
-  width: 100vw;
+.wrapper {
+  background-color: var(--app-background-color);
+  color: var(--app-text-color);
+  min-height: 100vh;
 
-  @media screen and (min-width: 768px) {
-    margin: 0 auto;
-    max-width: 1020px;
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100dvh;
+    width: 100vw;
+
+    @media screen and (min-width: 768px) {
+      margin: 0 auto;
+      max-width: 1020px;
+    }
   }
 }
 

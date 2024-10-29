@@ -13,7 +13,12 @@ function Rating({ rating = 0 }: RatingProps) {
     .map((_, index) => (
       <div key={index} onMouseEnter={() => setRatingState(index + 1)}>
         <Star
-          style={{ fill: ratingState > index ? 'orange' : 'rgba(0,0,0,0.1)' }}
+          style={{
+            fill:
+              ratingState > index
+                ? 'var(--star-on-color)'
+                : 'var(--star-off-color)'
+          }}
         />
       </div>
     ));

@@ -6,6 +6,7 @@ This project is a simple React application built with Vite, TypeScript and SCSS 
 
 Fetches data from a mock bookstore JSON:API.
 Displays a list of bookstore cards with bookstore name, image, rating, bestseller books, etc.
+Has Theme Toggle button for light and dark theme.
 Built with Vite for fast development experience.
 Uses TypeScript for type safety and improved maintainability.
 

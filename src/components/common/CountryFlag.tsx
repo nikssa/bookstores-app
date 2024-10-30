@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useCountry } from '../../hooks/useCountry';
 
 type CountryFlagProps = { code: string };
@@ -30,4 +31,4 @@ const CountryFlag = ({ code }: CountryFlagProps) => {
   );
 };
 
-export default CountryFlag;
+export default memo(CountryFlag);

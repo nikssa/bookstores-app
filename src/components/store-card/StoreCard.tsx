@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { NormalizeStoresProps } from '../../types';
 import CountryFlag from '../common/CountryFlag';
 import DateLink from '../common/DateLink';
@@ -51,4 +52,4 @@ function StoreCard({
   );
 }
 
-export default StoreCard;
+export default memo(StoreCard);

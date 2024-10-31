@@ -16,6 +16,9 @@ jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,6 +37,8 @@ jobs:
           path: dist
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
+        # env:
+        #   PAGES_DEPLOYMENT_TOKEN: ${{ secrets.PAGES_DEPLOYMENT_TOKEN }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           artifact_name: github-pages-react-build

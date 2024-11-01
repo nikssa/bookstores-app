@@ -72,3 +72,7 @@ SCSS
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 I hope this README provides clear instructions for setting up and running the project. Feel free to explore the code and contribute to this project!
+
+## CI/CD
+
+...
